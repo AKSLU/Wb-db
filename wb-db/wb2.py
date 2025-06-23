@@ -33,7 +33,7 @@ def product_info(art):
         response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
         if response.status_code == 200:
             data = response.json()
-            name = data.get("imt_name", "")
+            name = data.get("imt_name", " Нет ")
             info_product = data.get("grouped_options", "")
             return name, info_product, art
         else:
@@ -55,7 +55,7 @@ for i in range(10):
         c.execute("INSERT INTO products (name, haracteristici, art, price) VALUES (?, ?, ?, ?)",
                   (name, str(info), art, price))
         conn.commit()
-        print(f"Сохранено в БД: {name} | art: {art} | цена: {price}")
+        print(f"Сохранено в БД: {name}, art: {art}, цена: {price}")
     else:
         print(f"Данные не получены полностью — пропуск артикула {art}")
 
