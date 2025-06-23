@@ -33,8 +33,8 @@ def product_info(art):
         response = requests.get(url, headers=headers, proxies=proxies, timeout=10)
         if response.status_code == 200:
             data = response.json()
-            name = data.get("imt_name", " Нет ")
-            info_product = data.get("grouped_options", "")
+            name = data.get("imt_name", " Название не найдено")
+            info_product = data.get("grouped_options", "Инфорация не найдено")
             return name, info_product, art
         else:
             return None, None, art
@@ -46,7 +46,7 @@ base_art = 5007120
 
 for i in range(10): 
     art = str(base_art + random.randint(0, 500000))
-    print(f"Проверка артикула: {art}")
+    print(f"{art}")
 
     name, info, art = product_info(art)
 
@@ -55,9 +55,9 @@ for i in range(10):
         c.execute("INSERT INTO products (name, haracteristici, art, price) VALUES (?, ?, ?, ?)",
                   (name, str(info), art, price))
         conn.commit()
-        print(f"Сохранено в БД: {name}, art: {art}, цена: {price}")
+        print(f"Save db: {name}, art: {art}, цена: {price}")
     else:
-        print(f"Данные не получены полностью — пропуск артикула {art}")
+        print(f"Error!")
 
     time.sleep(1.5)
 
