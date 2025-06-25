@@ -19,8 +19,8 @@ c.execute("CREATE INDEX IF NOT EXISTS idx_art ON products(art)")
 c.execute("CREATE INDEX IF NOT EXISTS idx_price ON products(price)")
 
 proxies = {
-    "http": "http://5435d268bba805db9446__cr.kz:1ce35e8a9661e50b@gw.dataimpulse.com:10000",
-    "https": "http://5435d268bba805db9446__cr.kz:1ce35e8a9661e50b@gw.dataimpulse.com:10000"
+    "http": " ",
+    "https": " "
 }
 
 def product_info(art):
